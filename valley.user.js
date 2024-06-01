@@ -11,8 +11,9 @@
 
 (function () {
     function executeScript() {
-        document.querySelector("#bottomMenu > div > div.button.settings > div").style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)"
-        window.User.prototype.removeLifeOnStartGame = function() {
+        var iframe_window = document.querySelector("body > iframe").contentWindow;
+        document.querySelector("#bottomMenu > div > div.button.settings > div").style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
+        iframe_window.User.prototype.removeLifeOnStartGame = function() {
             var e = {
                 actionName: "start game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -28,7 +29,7 @@
                 validate: !0
             }))
         };
-        window.NewLivesSystem.prototype.removeLifeOnStartGame = function() {
+        iframe_window.NewLivesSystem.prototype.removeLifeOnStartGame = function() {
             var e = {
                 actionName: "start game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -45,7 +46,7 @@
                 validate: !0
             }))
         };
-        window.EventLivesSystem.prototype.removeLifeOnStartGame = function() {
+        iframe_window.EventLivesSystem.prototype.removeLifeOnStartGame = function() {
             if (this.isOnRestoreMode())
                 return !1;
             var e = {
@@ -59,7 +60,7 @@
             }),
             this.gameIsStarted = !0
         };
-        window.User.prototype.addAndRemoveLifeOnLoseGame = function() {
+        iframe_window.User.prototype.addAndRemoveLifeOnLoseGame = function() {
             var e = {
                 actionName: "lose game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -78,7 +79,7 @@
                 validate: !0
             }))
         };
-        window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
+        iframe_window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
             var e = {
                 actionName: "lose game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -97,7 +98,7 @@
                 validate: !0
             }))
         };
-        window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
+        iframe_window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
             var e = {
                 actionName: "lose game",
                 actionEpisode: episode.getNumForStatistics(),
