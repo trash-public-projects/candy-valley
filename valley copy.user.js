@@ -11,7 +11,7 @@
 
 (function () {
     function executeScript() {
-        
+        try {
         document.querySelector("#bottomMenu > div > div.button.settings > div").style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
         window.User.prototype.removeLifeOnStartGame = function() {
             var e = {
@@ -112,7 +112,10 @@
             this.gameIsStarted = !1,
             this.addLife(!0)
         }
-    };
+    } catch (e){
+        console.error(e);
+    }
+};
     setTimeout(function() {
             
     
