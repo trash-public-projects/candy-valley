@@ -113,12 +113,13 @@
             this.addLife(!0)
         }
     };
+    setTimeout(function() {
+            
+    
     if (window.top === window.self) {
         console.log("hi!");
     }
     else {
-        setTimeout(function() {
-            executeScript();
-        }, 25000);
-    }
+        executeScript();
+    }}, 25000);
 })();
