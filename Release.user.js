@@ -5,8 +5,10 @@
 // @description  hack valley 
 // @author       Triggeroff
 // @match        *://*/*
-// @grant        none
-// @require      https://github.com/trigger-off/valley/raw/main/Hack.js
+// @grant        GM_addStyle
+// @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
+// @require      https://raw.githubusercontent.com/trigger-off/tampermenu/master/menu.js
+// @run-at       document-end
 // ==/UserScript==
 
 (function() {
@@ -18,9 +20,28 @@
         },3500)
         
     } else {
+        
         waitForElm('#bottomMenu > div > div.button.settings > div').then((elm) => {
             console.log('Script is ready');
-            executeScript();
+            var external$uiCss = "ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/dark-hive/jquery-ui.css";
+            $("head").append(
+                '<link href="//'
+                +  external$uiCss
+                + '" rel="stylesheet" type="text/css">'
+            );
+
+            var menuHandler = createMenu({
+                textName: "Inject",
+                items: [{
+                    menuText: "DO IT!",
+                    iconClass: "ui-icon-heart",
+                    onClick: function(){
+                    alert("hi");
+                    executeScript();
+                    }
+                }]
+            });
+            
         });
 
     }
