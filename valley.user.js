@@ -4,7 +4,7 @@
 // @version      1
 // @description  Скрипт для удаления функции уменьшения здоровья в игре
 // @author       triggeroff
-// @match        *://*
+// @match        *candyvalley-ph.g.tapclap.com*
 // @grant        none
 // ==/UserScript==
 'use strict';
