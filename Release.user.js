@@ -6,7 +6,7 @@
 // @author       Triggeroff
 // @match        *://*/*
 // @grant        none
-// @require      
+// @require      https://github.com/trigger-off/valley/raw/main/Hack.js
 // ==/UserScript==
 
 (function() {
