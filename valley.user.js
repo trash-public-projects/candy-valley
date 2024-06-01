@@ -4,8 +4,7 @@
 // @version      1
 // @description  Скрипт для удаления функции уменьшения здоровья в игре
 // @author       triggeroff
-// @match        *candyvalley-ph.g.tapclap.com*
-// @match        *localhost*
+// @match        *://*
 // @grant        none
 // ==/UserScript==
 'use strict';
@@ -114,16 +113,12 @@
             this.addLife(!0)
         }
     };
-    // Задержка выполнения скрипта
-    if (/localhost/i.test (document.location.href) ) {
-        //Main page
+    if (window.top === window.self) {
         console.log("hi!");
     }
     else {
-        //iFrame
         setTimeout(function() {
             executeScript();
         }, 25000);
     }
- // Задержка на 5 секунд для загрузки всех необходимых объектов
 })();
