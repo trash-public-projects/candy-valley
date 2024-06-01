@@ -1,6 +1,6 @@
 function executeScript() {
     try {
-    document.querySelector("#bottomMenu > div > div.button.settings > div").style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
+    // document.querySelector("#bottomMenu > div > div.button.settings > div").style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
     window.User.prototype.removeLifeOnStartGame = function() {
         var e = {
             actionName: "start game",
