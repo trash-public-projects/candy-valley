@@ -6,6 +6,8 @@
 // @author       Triggeroff
 // @match        *://*/*
 // @grant        GM_addStyle
+// @require      https://code.jquery.com/jquery-2.1.4.min.js
+// @require      https://code.jquery.com/ui/1.11.4/jquery-ui.min.js
 // @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
 // @require      https://raw.githubusercontent.com/trigger-off/tampermenu/master/menu.js
 // @run-at       document-end
