@@ -18,7 +18,8 @@ function waitForElm(selector) {
     });
 }
 function infMoves() {
-    window.GameClass.prototype.move = eval("(" + window.GameClass.prototype.move.toString().replace('this.get("moves") - 1', 'this.get("moves")') + ")")
+    window.GameClass.prototype.move = eval("(" + window.GameClass.prototype.move.toString().replace('this.get("moves") - 1', 'this.get("moves")') + ")");
+    window.GameClass.prototype.move = eval("(" + window.GameClass.prototype.move.toString().replace('this.get("moves")-1', 'this.get("moves")') + ")");
 }
 function infHearts() {
     window.User.prototype.removeLifeOnStartGame = function() {
@@ -126,7 +127,7 @@ function executeScript() {
         var setting_button = document.querySelector("#bottomMenu > div > div.button.settings > div")
         setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
         setting_button.addEventListener("touchend", function () {
-            inf_moves = confirm("Бесконечные шаги?")
+            inf_moves = confirm("Бесконечные шаги?");
             if (inf_moves) {
                 infMoves();
             }
