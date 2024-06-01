@@ -145,6 +145,9 @@ function infHearts(state) {
         window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = orig_EventLivesSystem_addAndRemoveLifeOnLoseGame;
     }
 }
+function win(){
+    window.GameBaseView.prototype.onWin();
+}
 function executeScript() {
     try {
         orig_User_removeLifeOnStartGame = window.User.prototype.removeLifeOnStartGame;
@@ -154,9 +157,19 @@ function executeScript() {
         orig_NewLivesSystem_addAndRemoveLifeOnLoseGame = window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
         orig_EventLivesSystem_addAndRemoveLifeOnLoseGame = window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
         orig_GameClass_move = window.GameClass.prototype.move;
+        waitForElm('#bottomMenu').then((elm) => {
+            elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
+            elm.addEventListener("touchend", function () {
+                if(confirm("Пропустить уровень?")) {
+                    win();
+                }
+            
+            })
+        });
         var setting_button = document.querySelector("#bottomMenu > div > div.button.settings > div")
         setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
-        setting_button.addEventListener("touchend", function () {
+        var heart_icon = document.querySelector(".lifesBlockIco");
+        heart_icon.addEventListener("touchend", function () {
             inf_hearts = confirm("Бесконечные жизни?");
             inf_moves = confirm("Бесконечные шаги?");
             infMoves(inf_moves);
