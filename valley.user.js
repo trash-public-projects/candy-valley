@@ -5,15 +5,16 @@
 // @description  Скрипт для удаления функции уменьшения здоровья в игре
 // @author       triggeroff
 // @match        *candyvalley-ph.g.tapclap.com*
+// @match        *localhost*
 // @grant        none
 // ==/UserScript==
 'use strict';
 
 (function () {
     function executeScript() {
-        var iframe_window = document.querySelector("body > iframe").contentWindow;
+        
         document.querySelector("#bottomMenu > div > div.button.settings > div").style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
-        iframe_window.User.prototype.removeLifeOnStartGame = function() {
+        window.User.prototype.removeLifeOnStartGame = function() {
             var e = {
                 actionName: "start game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -29,7 +30,7 @@
                 validate: !0
             }))
         };
-        iframe_window.NewLivesSystem.prototype.removeLifeOnStartGame = function() {
+        window.NewLivesSystem.prototype.removeLifeOnStartGame = function() {
             var e = {
                 actionName: "start game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -46,7 +47,7 @@
                 validate: !0
             }))
         };
-        iframe_window.EventLivesSystem.prototype.removeLifeOnStartGame = function() {
+        window.EventLivesSystem.prototype.removeLifeOnStartGame = function() {
             if (this.isOnRestoreMode())
                 return !1;
             var e = {
@@ -60,7 +61,7 @@
             }),
             this.gameIsStarted = !0
         };
-        iframe_window.User.prototype.addAndRemoveLifeOnLoseGame = function() {
+        window.User.prototype.addAndRemoveLifeOnLoseGame = function() {
             var e = {
                 actionName: "lose game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -79,7 +80,7 @@
                 validate: !0
             }))
         };
-        iframe_window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
+        window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
             var e = {
                 actionName: "lose game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -98,7 +99,7 @@
                 validate: !0
             }))
         };
-        iframe_window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
+        window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
             var e = {
                 actionName: "lose game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -114,7 +115,15 @@
         }
     };
     // Задержка выполнения скрипта
-    setTimeout(function() {
-        executeScript();
-    }, 25000); // Задержка на 5 секунд для загрузки всех необходимых объектов
+    if (/localhost/i.test (document.location.href) ) {
+        //Main page
+        console.log("hi!");
+    }
+    else {
+        //iFrame
+        setTimeout(function() {
+            executeScript();
+        }, 25000);
+    }
+ // Задержка на 5 секунд для загрузки всех необходимых объектов
 })();
