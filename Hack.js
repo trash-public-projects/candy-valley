@@ -170,9 +170,12 @@ function executeScript() {
         orig_User_usePowerUp = window.User.prototype.usePowerUp;
         waitForElm('.settingsInGame').then((elm) => {
             elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
-            if(confirm("Пропустить уровень?") && enable_skips) {
-                win();
-            }
+            elm.addEventListener("touchend",function () {
+                if(confirm("Пропустить уровень?") && enable_skips) {
+                    win();
+                }
+            })
+
         });
         var setting_button = document.querySelector("#bottomMenu > div > div.button.settings > div")
         setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
