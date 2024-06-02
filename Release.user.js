@@ -17,11 +17,11 @@
         
         waitForElm("iframe").then((elm) => {
             setTimeout(() => {
-                if (GM_getValue(uid) === undefined){
+                if (GM_getValue("uid") === undefined){
                     var needUrl = elm.src;
                     window.location.replace(needUrl);
                 } else {
-                    window.location.replace(updateURLParameter(window.location.href,"deviceUid", GM_getValue(uid)));
+                    window.location.replace(updateURLParameter(window.location.href,"deviceUid", GM_getValue("uid")));
                 }
             },5000)
         })

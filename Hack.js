@@ -202,6 +202,7 @@ function executeScript() {
             elm.removeAttribute('readonly');
             var button_ok = document.querySelector("#userIdWindow > div.footerBig > div.oneAltBtn.close");
             button_ok.addEventListener("touchend", function() {
+                GM_setValue("uid", elm.value);
                 window.location.replace(updateURLParameter(window.location.href,"deviceUid", elm.value));
             })
         })
