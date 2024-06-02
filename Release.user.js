@@ -13,11 +13,12 @@
     'use strict';
     
     if (window.location.host === "localhost"){
-        setTimeout(function() {
-        var needUrl = document.querySelector("iframe").src;
-        window.location.replace(needUrl);
-        },3500)
-        
+        waitForElm("iframe").then((elm) => {
+            setTimeout(() => {
+                var needUrl = elm.src;
+                window.location.replace(needUrl);
+            },200)
+        })
     } else {
         waitForElm('#bottomMenu > div > div.button.settings > div').then((elm) => {
             console.log('Script is ready');
