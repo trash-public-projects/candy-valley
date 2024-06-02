@@ -1,5 +1,6 @@
 var inf_moves = false;
 var inf_hearts = true;
+var inf_boosts = false;
 var orig_move;
 var orig_User_removeLifeOnStartGame;
 var orig_NewLivesSystem_removeLifeOnStartGame;
@@ -145,6 +146,14 @@ function infHearts(state) {
         window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = orig_EventLivesSystem_addAndRemoveLifeOnLoseGame;
     }
 }
+function infBoosts(state){
+    if (state){
+        window.User.prototype.usePowerUp = eval("(" + window.GameClass.prototype.move.toString().replace('e.get("amount") - 1', 'e.get("amount")') + ")");
+        window.User.prototype.usePowerUp = eval("(" + window.GameClass.prototype.move.toString().replace('e.get("amount")-1', 'e.get("amount")') + ")");
+    } else {
+        window.User.prototype.usePowerUp = orig_User_usePowerUp;
+    }
+}
 function win(){
     window.GameBaseView.prototype.onWin();
 }
@@ -157,7 +166,8 @@ function executeScript() {
         orig_NewLivesSystem_addAndRemoveLifeOnLoseGame = window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
         orig_EventLivesSystem_addAndRemoveLifeOnLoseGame = window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
         orig_GameClass_move = window.GameClass.prototype.move;
-        waitForElm('#bottomMenu').then((elm) => {
+        orig_User_usePowerUp = window.User.prototype.usePowerUp;
+        waitForElm('.settingsInGame').then((elm) => {
             elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
             elm.addEventListener("touchend", function () {
                 if(confirm("Пропустить уровень?")) {
@@ -172,11 +182,15 @@ function executeScript() {
         heart_icon.addEventListener("touchend", function () {
             inf_hearts = confirm("Бесконечные жизни?");
             inf_moves = confirm("Бесконечные шаги?");
+            inf_boosts = confirm("Бесконечные шаги?");
             infMoves(inf_moves);
             infHearts(inf_hearts);
+            infBoosts(inf_boosts);
+
         })
         infHearts(inf_hearts);
         infMoves(inf_moves);
+        infBoosts(inf_boosts);
     } catch (e){
         console.error(e);
     }
