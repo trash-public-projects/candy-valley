@@ -10,29 +10,32 @@ var orig_User_addAndRemoveLifeOnLoseGame;
 var orig_NewLivesSystem_addAndRemoveLifeOnLoseGame;
 var orig_EventLivesSystem_addAndRemoveLifeOnLoseGame;
 var orig_GameClass_move;
-function waitForPropertiesSync() {
+function waitForProperties() {
     const checkInterval = 100; // Интервал проверки в миллисекундах
   
-    // Функция, которая проверяет наличие всех необходимых свойств
-    function arePropertiesDefined() {
-      return (
-        window.User && window.User.prototype.removeLifeOnStartGame &&
-        window.NewLivesSystem && window.NewLivesSystem.prototype.removeLifeOnStartGame &&
-        window.EventLivesSystem && window.EventLivesSystem.prototype.removeLifeOnStartGame &&
-        window.User.prototype.addAndRemoveLifeOnLoseGame &&
-        window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
-        window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
-        window.GameClass && window.GameClass.prototype.move &&
-        window.User.prototype.usePowerUp
-      );
-    }
+    return new Promise((resolve) => {
+      // Функция, которая проверяет наличие всех необходимых свойств
+      function arePropertiesDefined() {
+        return (
+          window.User && window.User.prototype.removeLifeOnStartGame &&
+          window.NewLivesSystem && window.NewLivesSystem.prototype.removeLifeOnStartGame &&
+          window.EventLivesSystem && window.EventLivesSystem.prototype.removeLifeOnStartGame &&
+          window.User.prototype.addAndRemoveLifeOnLoseGame &&
+          window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
+          window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
+          window.GameClass && window.GameClass.prototype.move &&
+          window.User.prototype.usePowerUp
+        );
+      }
   
-    // Ожидание, пока все свойства не будут объявлены
-    while (!arePropertiesDefined()) {
-      // Блокируем выполнение кода на некоторое время
-      const startTime = new Date().getTime();
-      while (new Date().getTime() - startTime < checkInterval) {}
-    }
+      // Ожидание, пока все свойства не будут объявлены
+      const intervalId = setInterval(() => {
+        if (arePropertiesDefined()) {
+          clearInterval(intervalId);
+          resolve();
+        }
+      }, checkInterval);
+    });
   }
 function updateURLParameter(url, param, paramVal){
     var newAdditionalURL = "";
@@ -203,17 +206,16 @@ function win(){
 }
 function executeScript() {
     try {
-        waitForPropertiesSync();
-
-        // Код здесь будет выполняться только после объявления всех переменных
-        orig_User_removeLifeOnStartGame = window.User.prototype.removeLifeOnStartGame;
-        orig_NewLivesSystem_removeLifeOnStartGame = window.NewLivesSystem.prototype.removeLifeOnStartGame;
-        orig_EventLivesSystem_removeLifeOnStartGame = window.EventLivesSystem.prototype.removeLifeOnStartGame;
-        orig_User_addAndRemoveLifeOnLoseGame = window.User.prototype.addAndRemoveLifeOnLoseGame;
-        orig_NewLivesSystem_addAndRemoveLifeOnLoseGame = window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
-        orig_EventLivesSystem_addAndRemoveLifeOnLoseGame = window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
-        orig_GameClass_move = window.GameClass.prototype.move;
-        orig_User_usePowerUp = window.User.prototype.usePowerUp;
+        waitForProperties().then(() => {
+            // Все переменные объявлены, сохраняем оригинальные функции
+            orig_User_removeLifeOnStartGame = window.User.prototype.removeLifeOnStartGame;
+            orig_NewLivesSystem_removeLifeOnStartGame = window.NewLivesSystem.prototype.removeLifeOnStartGame;
+            orig_EventLivesSystem_removeLifeOnStartGame = window.EventLivesSystem.prototype.removeLifeOnStartGame;
+            orig_User_addAndRemoveLifeOnLoseGame = window.User.prototype.addAndRemoveLifeOnLoseGame;
+            orig_NewLivesSystem_addAndRemoveLifeOnLoseGame = window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
+            orig_EventLivesSystem_addAndRemoveLifeOnLoseGame = window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
+            orig_GameClass_move = window.GameClass.prototype.move;
+            orig_User_usePowerUp = window.User.prototype.usePowerUp;
         waitForElm('.settingsInGame').then((elm) => {
             elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
             elm.addEventListener("touchend",function () {
@@ -250,6 +252,7 @@ function executeScript() {
         infHearts(inf_hearts);
         infMoves(inf_moves);
         infBoosts(inf_boosts);
+    });
     } catch (e){
         console.error(e);
     }
