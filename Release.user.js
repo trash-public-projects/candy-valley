@@ -5,7 +5,8 @@
 // @description  hack valley 
 // @author       Triggeroff
 // @match        *://*/*
-// @grant        none
+// @grant        GM_setValue
+// @grant        GM_getValue
 // @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
 // ==/UserScript==
 
@@ -16,8 +17,12 @@
         
         waitForElm("iframe").then((elm) => {
             setTimeout(() => {
-                var needUrl = elm.src;
-                window.location.replace(needUrl);
+                if (GM_getValue(uid) === undefined){
+                    var needUrl = elm.src;
+                    window.location.replace(needUrl);
+                } else {
+                    window.location.replace(updateURLParameter(window.location.href,"deviceUid", GM_getValue(uid)));
+                }
             },5000)
         })
     } else {
