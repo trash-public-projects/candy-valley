@@ -5,16 +5,15 @@
 // @description  hack valley 
 // @author       Triggeroff
 // @match        *://*/*
-// @grant        GM_setValue
-// @grant        GM_getValue
-// @grant        unsafeWindow
+// @require     https://gist.githubusercontent.com/arantius/3123124/raw/grant-none-shim.js
 // @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
+// @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
     console.dir(window);
-    console.dir(unsafeWindow);
+
     if (window.location.host === "localhost"){
         
         waitForElm("iframe").then((elm) => {
