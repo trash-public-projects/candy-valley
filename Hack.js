@@ -179,6 +179,9 @@ function executeScript() {
             })
 
         });
+        waitForElm("#userIdWindow > div.main > textarea").then((elm) => {
+            elm.removeAttribute('readonly');
+        })
         var setting_button = document.querySelector("#bottomMenu > div > div.button.settings > div")
         setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
         var heart_icon = document.querySelector(".lifesBlockIco");
