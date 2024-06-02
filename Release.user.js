@@ -5,7 +5,7 @@
 // @description  hack valley 
 // @author       Triggeroff
 // @match        *://*/*
-// @require     https://gist.githubusercontent.com/arantius/3123124/raw/grant-none-shim.js
+// @require      https://gist.githubusercontent.com/arantius/3123124/raw/grant-none-shim.js
 // @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
 // @grant        none
 // ==/UserScript==
@@ -18,7 +18,7 @@
         
         waitForElm("iframe").then((elm) => {
             setTimeout(() => {
-                if (GM_getValue("uid") === undefined){
+                if (GM_getValue("uid") === null){
                     var needUrl = elm.src;
                     window.location.replace(needUrl);
                 } else {
