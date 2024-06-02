@@ -17,13 +17,13 @@ function waitForProperties() {
       // Функция, которая проверяет наличие всех необходимых свойств
       function arePropertiesDefined() {
         return (
-          unsafeWindow.User && unsafeWindow.User.prototype.removeLifeOnStartGame &&
-          unsafeWindow.NewLivesSystem && unsafeWindow.NewLivesSystem.prototype.removeLifeOnStartGame &&
-          unsafeWindow.EventLivesSystem && unsafeWindow.EventLivesSystem.prototype.removeLifeOnStartGame &&
-          unsafeWindow.User.prototype.addAndRemoveLifeOnLoseGame &&
-          unsafeWindow.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
-          unsafeWindow.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
-          unsafeWindow.GameClass && unsafeWindow.GameClass.prototype.move &&
+          window.User && window.User.prototype.removeLifeOnStartGame &&
+          window.NewLivesSystem && window.NewLivesSystem.prototype.removeLifeOnStartGame &&
+          window.EventLivesSystem && window.EventLivesSystem.prototype.removeLifeOnStartGame &&
+          window.User.prototype.addAndRemoveLifeOnLoseGame &&
+          window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
+          window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
+          window.GameClass && window.GameClass.prototype.move &&
           window.User.prototype.usePowerUp
         );
       }
@@ -75,17 +75,17 @@ function waitForElm(selector) {
 }
 function infMoves(state) {
     if (state){
-        unsafeWindow.GameClass.prototype.move = eval("(" + unsafeWindow.GameClass.prototype.move.toString().replace('this.get("moves") - 1', 'this.get("moves")') + ")");
-        unsafeWindow.GameClass.prototype.move = eval("(" + unsafeWindow.GameClass.prototype.move.toString().replace('this.get("moves")-1', 'this.get("moves")') + ")");
+        window.GameClass.prototype.move = eval("(" + window.GameClass.prototype.move.toString().replace('this.get("moves") - 1', 'this.get("moves")') + ")");
+        window.GameClass.prototype.move = eval("(" + window.GameClass.prototype.move.toString().replace('this.get("moves")-1', 'this.get("moves")') + ")");
     } else {
-        unsafeWindow.GameClass.prototype.move = orig_GameClass_move;
+        window.GameClass.prototype.move = orig_GameClass_move;
     }
 
 
 }
 function infHearts(state) {
     if (state){
-        unsafeWindow.User.prototype.removeLifeOnStartGame = function() {
+        window.User.prototype.removeLifeOnStartGame = function() {
             var e = {
                 actionName: "start game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -101,7 +101,7 @@ function infHearts(state) {
                 validate: !0
             }))
         };
-        unsafeWindow.NewLivesSystem.prototype.removeLifeOnStartGame = function() {
+        window.NewLivesSystem.prototype.removeLifeOnStartGame = function() {
             var e = {
                 actionName: "start game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -118,7 +118,7 @@ function infHearts(state) {
                 validate: !0
             }))
         };
-        unsafeWindow.EventLivesSystem.prototype.removeLifeOnStartGame = function() {
+        window.EventLivesSystem.prototype.removeLifeOnStartGame = function() {
             if (this.isOnRestoreMode())
                 return !1;
             var e = {
@@ -132,7 +132,7 @@ function infHearts(state) {
             }),
             this.gameIsStarted = !0
         };
-        unsafeWindow.User.prototype.addAndRemoveLifeOnLoseGame = function() {
+        window.User.prototype.addAndRemoveLifeOnLoseGame = function() {
             var e = {
                 actionName: "lose game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -151,7 +151,7 @@ function infHearts(state) {
                 validate: !0
             }))
         };
-        unsafeWindow.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
+        window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
             var e = {
                 actionName: "lose game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -170,7 +170,7 @@ function infHearts(state) {
                 validate: !0
             }))
         };
-        unsafeWindow.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
+        window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = function() {
             var e = {
                 actionName: "lose game",
                 actionEpisode: episode.getNumForStatistics(),
@@ -185,37 +185,37 @@ function infHearts(state) {
             this.addLife(!0)
         }
     } else {
-        unsafeWindow.User.prototype.removeLifeOnStartGame = orig_User_removeLifeOnStartGame;
-        unsafeWindow.NewLivesSystem.prototype.removeLifeOnStartGame = orig_NewLivesSystem_removeLifeOnStartGame;
-        unsafeWindow.EventLivesSystem.prototype.removeLifeOnStartGame = orig_EventLivesSystem_removeLifeOnStartGame;
-        unsafeWindow.User.prototype.addAndRemoveLifeOnLoseGame = orig_User_addAndRemoveLifeOnLoseGame;
-        unsafeWindow.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame = orig_NewLivesSystem_addAndRemoveLifeOnLoseGame;
-        unsafeWindow.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = orig_EventLivesSystem_addAndRemoveLifeOnLoseGame;
+        window.User.prototype.removeLifeOnStartGame = orig_User_removeLifeOnStartGame;
+        window.NewLivesSystem.prototype.removeLifeOnStartGame = orig_NewLivesSystem_removeLifeOnStartGame;
+        window.EventLivesSystem.prototype.removeLifeOnStartGame = orig_EventLivesSystem_removeLifeOnStartGame;
+        window.User.prototype.addAndRemoveLifeOnLoseGame = orig_User_addAndRemoveLifeOnLoseGame;
+        window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame = orig_NewLivesSystem_addAndRemoveLifeOnLoseGame;
+        window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame = orig_EventLivesSystem_addAndRemoveLifeOnLoseGame;
     }
 }
 function infBoosts(state){
     if (state){
-        unsafeWindow.User.prototype.usePowerUp = eval("(" + unsafeWindow.GameClass.prototype.move.toString().replace('e.get("amount") - 1', 'e.get("amount")') + ")");
-        unsafeWindow.User.prototype.usePowerUp = eval("(" + unsafeWindow.GameClass.prototype.move.toString().replace('e.get("amount")-1', 'e.get("amount")') + ")");
+        window.User.prototype.usePowerUp = eval("(" + window.GameClass.prototype.move.toString().replace('e.get("amount") - 1', 'e.get("amount")') + ")");
+        window.User.prototype.usePowerUp = eval("(" + window.GameClass.prototype.move.toString().replace('e.get("amount")-1', 'e.get("amount")') + ")");
     } else {
-        unsafeWindow.User.prototype.usePowerUp = orig_User_usePowerUp;
+        window.User.prototype.usePowerUp = orig_User_usePowerUp;
     }
 }
 function win(){
-    unsafeWindow.GameBaseView.prototype.onWin();
+    window.GameBaseView.prototype.onWin();
 }
 function executeScript() {
     try {
         waitForProperties().then(() => {
             // Все переменные объявлены, сохраняем оригинальные функции
-            orig_User_removeLifeOnStartGame = unsafeWindow.User.prototype.removeLifeOnStartGame;
-            orig_NewLivesSystem_removeLifeOnStartGame = unsafeWindow.NewLivesSystem.prototype.removeLifeOnStartGame;
-            orig_EventLivesSystem_removeLifeOnStartGame = unsafeWindow.EventLivesSystem.prototype.removeLifeOnStartGame;
-            orig_User_addAndRemoveLifeOnLoseGame = unsafeWindow.User.prototype.addAndRemoveLifeOnLoseGame;
-            orig_NewLivesSystem_addAndRemoveLifeOnLoseGame = unsafeWindow.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
-            orig_EventLivesSystem_addAndRemoveLifeOnLoseGame = unsafeWindow.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
-            orig_GameClass_move = unsafeWindow.GameClass.prototype.move;
-            orig_User_usePowerUp = unsafeWindow.User.prototype.usePowerUp;
+            orig_User_removeLifeOnStartGame = window.User.prototype.removeLifeOnStartGame;
+            orig_NewLivesSystem_removeLifeOnStartGame = window.NewLivesSystem.prototype.removeLifeOnStartGame;
+            orig_EventLivesSystem_removeLifeOnStartGame = window.EventLivesSystem.prototype.removeLifeOnStartGame;
+            orig_User_addAndRemoveLifeOnLoseGame = window.User.prototype.addAndRemoveLifeOnLoseGame;
+            orig_NewLivesSystem_addAndRemoveLifeOnLoseGame = window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
+            orig_EventLivesSystem_addAndRemoveLifeOnLoseGame = window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
+            orig_GameClass_move = window.GameClass.prototype.move;
+            orig_User_usePowerUp = window.User.prototype.usePowerUp;
         waitForElm('.settingsInGame').then((elm) => {
             elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
             elm.addEventListener("touchend",function () {

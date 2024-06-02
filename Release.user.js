@@ -13,7 +13,8 @@
 
 (function() {
     'use strict';
-    
+    console.dir(window);
+    console.dir(unsafeWindow);
     if (window.location.host === "localhost"){
         
         waitForElm("iframe").then((elm) => {
