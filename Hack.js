@@ -236,7 +236,7 @@ function executeScript() {
             })
         })
         waitForElm("#bottomMenu > div > div.button.settings > div").then((elm) => {
-            setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)"
+            elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)"
         });
         waitForElm(".lifesBlockIco").then((elm) => {
             heart_icon.addEventListener("touchend", function () {
