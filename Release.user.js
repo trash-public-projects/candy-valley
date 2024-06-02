@@ -21,9 +21,9 @@
                     var needUrl = elm.src;
                     window.location.replace(needUrl);
                 } else {
-                    window.location.replace(updateURLParameter(window.location.href,"deviceUid", GM_getValue("uid")));
+                    window.location.replace(updateURLParameter(elm.src,"deviceUid", GM_getValue("uid")));
                 }
-            },5000)
+            },6000)
         })
     } else {
         waitForElm('#bottomMenu > div > div.button.settings > div').then((elm) => {
