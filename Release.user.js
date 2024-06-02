@@ -28,7 +28,10 @@
     } else {
         waitForElm('#bottomMenu > div > div.button.settings > div').then((elm) => {
             console.log('Script is ready');
-            executeScript();
+            setTimeout(() => {
+                executeScript();
+            }, 2000)
+            
         });
         waitForElm("#prePreloadPage > div > span").then((elm) => {
             elm.textContent = "Загружаю скрипт";
