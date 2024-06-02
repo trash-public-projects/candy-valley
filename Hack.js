@@ -24,7 +24,7 @@ function waitForProperties() {
           unsafeWindow.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
           unsafeWindow.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame &&
           unsafeWindow.GameClass && unsafeWindow.GameClass.prototype.move &&
-          unsafeWindow.User.prototype.usePowerUp
+          window.User.prototype.usePowerUp
         );
       }
   
@@ -227,12 +227,12 @@ function executeScript() {
             })
 
         });
-        waitForElm("#userIdunsafeWindow > div.main > textarea").then((elm) => {
+        waitForElm("#userIdWindow > div.main > textarea").then((elm) => {
             elm.removeAttribute('readonly');
-            var button_ok = document.querySelector("#userIdunsafeWindow > div.footerBig > div.oneAltBtn.close");
+            var button_ok = document.querySelector("#userIdWindow > div.footerBig > div.oneAltBtn.close");
             button_ok.addEventListener("touchend", function() {
                 GM_setValue("uid", elm.value);
-                unsafeWindow.location.replace(updateURLParameter(unsafeWindow.location.href,"deviceUid", elm.value));
+                window.location.replace(updateURLParameter(window.location.href,"deviceUid", elm.value));
             })
         })
         waitForElm("#bottomMenu > div > div.button.settings > div").then((elm) => {

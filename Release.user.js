@@ -7,22 +7,22 @@
 // @match        *://*/*
 // @grant        GM_setValue
 // @grant        GM_getValue
-// @grant        unsafeunsafeWindow
+// @grant        unsafeWindow
 // @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
 // ==/UserScript==
 
 (function() {
     'use strict';
     
-    if (unsafeWindow.location.host === "localhost"){
+    if (window.location.host === "localhost"){
         
         waitForElm("iframe").then((elm) => {
             setTimeout(() => {
                 if (GM_getValue("uid") === undefined){
                     var needUrl = elm.src;
-                    unsafeWindow.location.replace(needUrl);
+                    window.location.replace(needUrl);
                 } else {
-                    unsafeWindow.location.replace(updateURLParameter(elm.src,"deviceUid", GM_getValue("uid")));
+                    window.location.replace(updateURLParameter(elm.src,"deviceUid", GM_getValue("uid")));
                 }
             },5000)
         })
