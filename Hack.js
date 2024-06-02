@@ -235,19 +235,21 @@ function executeScript() {
                 window.location.replace(updateURLParameter(window.location.href,"deviceUid", elm.value));
             })
         })
-        var setting_button = document.querySelector("#bottomMenu > div > div.button.settings > div")
-        setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
-        var heart_icon = document.querySelector(".lifesBlockIco");
-
-        heart_icon.addEventListener("touchend", function () {
-            inf_hearts = confirm("Бесконечные жизни?");
-            inf_moves = confirm("Бесконечные шаги?");
-            inf_boosts = confirm("Бесконечные бусты?");
-            enable_skips = confirm("Включить пропуск уровней?");
-            infMoves(inf_moves);
-            infHearts(inf_hearts);
-            infBoosts(inf_boosts);
-
+        waitForElm("#bottomMenu > div > div.button.settings > div").then((elm) => {
+            setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)"
+        });
+        var heart_icon = document.querySelector();
+        waitForElm(".lifesBlockIco").then((elm) => {
+            heart_icon.addEventListener("touchend", function () {
+                inf_hearts = confirm("Бесконечные жизни?");
+                inf_moves = confirm("Бесконечные шаги?");
+                inf_boosts = confirm("Бесконечные бусты?");
+                enable_skips = confirm("Включить пропуск уровней?");
+                infMoves(inf_moves);
+                infHearts(inf_hearts);
+                infBoosts(inf_boosts);
+    
+            })
         })
         infHearts(inf_hearts);
         infMoves(inf_moves);
