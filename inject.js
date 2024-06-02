@@ -19,7 +19,7 @@ setTimeout(() => {
     waitForElm("iframe").then((elm) => {
         setTimeout(() => {
             window.location.replace("https://raw.githubusercontent.com/trigger-off/valley/main/Release.user.js");
-        },5000)
+        },10000)
     })
 },5000)
 

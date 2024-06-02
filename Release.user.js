@@ -13,9 +13,12 @@
     'use strict';
     
     if (window.location.host === "localhost"){
+        
         waitForElm("iframe").then((elm) => {
-            var needUrl = elm.src;
-            window.location.replace(needUrl);
+            setTimeout(() => {
+                var needUrl = elm.src;
+                window.location.replace(needUrl);
+            },5000)
         })
     } else {
         waitForElm('#bottomMenu > div > div.button.settings > div').then((elm) => {
