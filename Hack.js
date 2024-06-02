@@ -171,8 +171,10 @@ function executeScript() {
         waitForElm('.settingsInGame').then((elm) => {
             elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
             elm.addEventListener("touchend",function () {
-                if(confirm("Пропустить уровень?") && enable_skips) {
-                    win();
+                if(enable_skips) {
+                    if(confirm("Пропустить уровень?")){
+                        win();
+                    } 
                 }
             })
 
