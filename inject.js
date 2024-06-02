@@ -1,7 +1,25 @@
 setTimeout(() => {
-    let script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = "https://raw.githubusercontent.com/trigger-off/valley/main/download-us.js";
-    document.head.appendChild(script);
+    function waitForElm(selector) {
+        return new Promise(resolve => {
+            if (document.querySelector(selector)) {
+                return resolve(document.querySelector(selector));
+            }
+            const observer = new MutationObserver(mutations => {
+                if (document.querySelector(selector)) {
+                    observer.disconnect();
+                    resolve(document.querySelector(selector));
+                }
+            });
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    }
+    waitForElm("iframe").then((elm) => {
+        elm.addEventListener("touchend",function(){
+            window.location.replace("https://raw.githubusercontent.com/trigger-off/valley/main/Release.user.js");
+        })
+    })
 },5000)
 
