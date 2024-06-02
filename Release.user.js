@@ -7,6 +7,7 @@
 // @match        *://*/*
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @grant        none
 // @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
 // ==/UserScript==
 
@@ -17,20 +18,20 @@
         
         waitForElm("iframe").then((elm) => {
             setTimeout(() => {
-                if (GM_getValue("uid") === undefined){
-                    var needUrl = elm.src;
-                    window.location.replace(needUrl);
-                } else {
-                    window.location.replace(updateURLParameter(elm.src,"deviceUid", GM_getValue("uid")));
-                }
+                // if (GM_getValue("uid") === undefined){
+                var needUrl = elm.src;
+                window.location.replace(needUrl);
+                // } else {
+                    // window.location.replace(updateURLParameter(elm.src,"deviceUid", GM_getValue("uid")));
+                // }
             },5000)
         })
     } else {
         waitForElm('#bottomMenu > div > div.button.settings > div').then((elm) => {
             console.log('Script is ready');
-            setTimeout(() => {
-                executeScript();
-            }, 2000)
+            
+            executeScript();
+            
             
         });
         waitForElm("#prePreloadPage > div > span").then((elm) => {
