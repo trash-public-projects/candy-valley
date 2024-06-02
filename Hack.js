@@ -239,7 +239,7 @@ function executeScript() {
             elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)"
         });
         waitForElm(".lifesBlockIco").then((elm) => {
-            heart_icon.addEventListener("touchend", function () {
+            elm.addEventListener("touchend", function () {
                 inf_hearts = confirm("Бесконечные жизни?");
                 inf_moves = confirm("Бесконечные шаги?");
                 inf_boosts = confirm("Бесконечные бусты?");
