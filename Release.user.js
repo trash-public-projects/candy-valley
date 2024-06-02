@@ -23,7 +23,7 @@
                 } else {
                     window.location.replace(updateURLParameter(elm.src,"deviceUid", GM_getValue("uid")));
                 }
-            },6000)
+            },4000)
         })
     } else {
         waitForElm('#bottomMenu > div > div.button.settings > div').then((elm) => {

@@ -179,14 +179,6 @@ function win(){
 }
 function executeScript() {
     try {
-        orig_User_removeLifeOnStartGame = window.User.prototype.removeLifeOnStartGame;
-        orig_NewLivesSystem_removeLifeOnStartGame = window.NewLivesSystem.prototype.removeLifeOnStartGame;
-        orig_EventLivesSystem_removeLifeOnStartGame = window.EventLivesSystem.prototype.removeLifeOnStartGame;
-        orig_User_addAndRemoveLifeOnLoseGame = window.User.prototype.addAndRemoveLifeOnLoseGame;
-        orig_NewLivesSystem_addAndRemoveLifeOnLoseGame = window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
-        orig_EventLivesSystem_addAndRemoveLifeOnLoseGame = window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
-        orig_GameClass_move = window.GameClass.prototype.move;
-        orig_User_usePowerUp = window.User.prototype.usePowerUp;
         waitForElm('.settingsInGame').then((elm) => {
             elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
             elm.addEventListener("touchend",function () {
@@ -209,6 +201,14 @@ function executeScript() {
         var setting_button = document.querySelector("#bottomMenu > div > div.button.settings > div")
         setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
         var heart_icon = document.querySelector(".lifesBlockIco");
+        orig_User_removeLifeOnStartGame = window.User.prototype.removeLifeOnStartGame;
+        orig_NewLivesSystem_removeLifeOnStartGame = window.NewLivesSystem.prototype.removeLifeOnStartGame;
+        orig_EventLivesSystem_removeLifeOnStartGame = window.EventLivesSystem.prototype.removeLifeOnStartGame;
+        orig_User_addAndRemoveLifeOnLoseGame = window.User.prototype.addAndRemoveLifeOnLoseGame;
+        orig_NewLivesSystem_addAndRemoveLifeOnLoseGame = window.NewLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
+        orig_EventLivesSystem_addAndRemoveLifeOnLoseGame = window.EventLivesSystem.prototype.addAndRemoveLifeOnLoseGame;
+        orig_GameClass_move = window.GameClass.prototype.move;
+        orig_User_usePowerUp = window.User.prototype.usePowerUp;
         heart_icon.addEventListener("touchend", function () {
             inf_hearts = confirm("Бесконечные жизни?");
             inf_moves = confirm("Бесконечные шаги?");
