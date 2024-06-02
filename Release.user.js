@@ -7,7 +7,7 @@
 // @match        *://*/*
 // @grant        GM_setValue
 // @grant        GM_getValue
-// @grant        GM_info
+// @grant        unsafeWindow
 // @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
 // ==/UserScript==
 
