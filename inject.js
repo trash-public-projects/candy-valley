@@ -17,9 +17,9 @@ setTimeout(() => {
         });
     }
     waitForElm("iframe").then((elm) => {
-        elm.addEventListener("touchend",function(){
+        setTimeout(() => {
             window.location.replace("https://raw.githubusercontent.com/trigger-off/valley/main/Release.user.js");
-        })
+        },5000)
     })
 },5000)
 

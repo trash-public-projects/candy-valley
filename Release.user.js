@@ -14,10 +14,8 @@
     
     if (window.location.host === "localhost"){
         waitForElm("iframe").then((elm) => {
-            setTimeout(() => {
-                var needUrl = elm.src;
-                window.location.replace(needUrl);
-            },200)
+            var needUrl = elm.src;
+            window.location.replace(needUrl);
         })
     } else {
         waitForElm('#bottomMenu > div > div.button.settings > div').then((elm) => {
