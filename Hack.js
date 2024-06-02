@@ -169,7 +169,7 @@ function executeScript() {
         orig_User_usePowerUp = window.User.prototype.usePowerUp;
         waitForElm('.settingsInGame').then((elm) => {
             elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
-            elm.addEventListener("touchend", function () {
+            document.querySelector("#settingsWindow > div.main > div.musicBlock.menuItem > div.playerID.showUserIdBtn.smallBtn").addEventListener("touchend", function () {
                 if(confirm("Пропустить уровень?")) {
                     win();
                 }
@@ -182,7 +182,7 @@ function executeScript() {
         heart_icon.addEventListener("touchend", function () {
             inf_hearts = confirm("Бесконечные жизни?");
             inf_moves = confirm("Бесконечные шаги?");
-            inf_boosts = confirm("Бесконечные шаги?");
+            inf_boosts = confirm("Бесконечные бусты?");
             infMoves(inf_moves);
             infHearts(inf_hearts);
             infBoosts(inf_boosts);
