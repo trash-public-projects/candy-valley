@@ -10,6 +10,25 @@ var orig_User_addAndRemoveLifeOnLoseGame;
 var orig_NewLivesSystem_addAndRemoveLifeOnLoseGame;
 var orig_EventLivesSystem_addAndRemoveLifeOnLoseGame;
 var orig_GameClass_move;
+function updateURLParameter(url, param, paramVal){
+    var newAdditionalURL = "";
+    var tempArray = url.split("?");
+    var baseURL = tempArray[0];
+    var additionalURL = tempArray[1];
+    var temp = "";
+    if (additionalURL) {
+        tempArray = additionalURL.split("&");
+        for (var i=0; i<tempArray.length; i++){
+            if(tempArray[i].split('=')[0] != param){
+                newAdditionalURL += temp + tempArray[i];
+                temp = "&";
+            }
+        }
+    }
+
+    var rows_txt = temp + "" + param + "=" + paramVal;
+    return baseURL + "?" + newAdditionalURL + rows_txt;
+}
 function waitForElm(selector) {
     return new Promise(resolve => {
         if (document.querySelector(selector)) {
@@ -181,6 +200,10 @@ function executeScript() {
         });
         waitForElm("#userIdWindow > div.main > textarea").then((elm) => {
             elm.removeAttribute('readonly');
+            var button_ok = document.querySelector("#userIdWindow > div.footerBig > div.oneAltBtn.close");
+            button_ok.addEventListener("touchend", function() {
+                window.location.replace(updateURLParameter(window.location.href,"deviceUid", elm.value));
+            })
         })
         var setting_button = document.querySelector("#bottomMenu > div > div.button.settings > div")
         setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
