@@ -24,7 +24,7 @@
             executeScript();
         });
         waitForElm("#prePreloadPage > div > span").then((elm) => {
-            elm.textContent = "Загружаю игру, скрипт, бабки, деньги, два офшора";
+            elm.textContent = "Загружаю скрипт";
             document.querySelector("#prePreloadPage > div").style.color = "#ff2bebff"
         })
 
