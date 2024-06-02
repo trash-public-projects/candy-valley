@@ -1,6 +1,7 @@
 var inf_moves = false;
 var inf_hearts = true;
 var inf_boosts = false;
+var enable_skips = false;
 var orig_move;
 var orig_User_removeLifeOnStartGame;
 var orig_NewLivesSystem_removeLifeOnStartGame;
@@ -169,15 +170,9 @@ function executeScript() {
         orig_User_usePowerUp = window.User.prototype.usePowerUp;
         waitForElm('.settingsInGame').then((elm) => {
             elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
-            waitForElm('#settingsWindow > div.main > div.musicBlock.menuItem > div.playerID.showUserIdBtn.smallBtn').then((elm) => {
-                elm.addEventListener("touchend", function () {
-                    if(confirm("Пропустить уровень?")) {
-                        win();
-                    }
-                
-                })
-            });
-
+            if(confirm("Пропустить уровень?") && enable_skips) {
+                win();
+            }
         });
         var setting_button = document.querySelector("#bottomMenu > div > div.button.settings > div")
         setting_button.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)";
@@ -186,6 +181,7 @@ function executeScript() {
             inf_hearts = confirm("Бесконечные жизни?");
             inf_moves = confirm("Бесконечные шаги?");
             inf_boosts = confirm("Бесконечные бусты?");
+            enable_skips = confirm("Включить пропуск уровней?");
             infMoves(inf_moves);
             infHearts(inf_hearts);
             infBoosts(inf_boosts);
