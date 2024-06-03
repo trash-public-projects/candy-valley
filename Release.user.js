@@ -20,7 +20,7 @@
         alert("local");
         waitForElm("iframe").then((elm) => {
             setTimeout(() => {
-                if ((GM_getValue("uid") === undefined){
+                if ((GM_getValue("uid") === undefined)){
                     var needUrl = elm.src;
                     window.location.replace(needUrl);
                 } else {
