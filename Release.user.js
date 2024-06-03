@@ -17,7 +17,7 @@
     console.dir(window);
 
     if (window.location.host === "localhost"){
-        alert("local");
+        
         waitForElm("iframe").then((elm) => {
             setTimeout(() => {
                 if ((GM_getValue("uid") === undefined)){
