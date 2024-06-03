@@ -1,5 +1,5 @@
-var inf_moves = false;
 var inf_hearts = true;
+var inf_moves = false;
 var inf_boosts = false;
 var enable_skips = false;
 var orig_move;
