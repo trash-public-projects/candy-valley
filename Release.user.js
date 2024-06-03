@@ -5,9 +5,11 @@
 // @description  hack valley 
 // @author       Triggeroff
 // @match        *://*/*
-// @require      https://gist.githubusercontent.com/arantius/3123124/raw/grant-none-shim.js
+// @grant        GM_info
 // @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
-// @grant        none
+// @grant        unsafeWindow
+// @grant        GM_setValue
+// @grant        GM_getValue
 // ==/UserScript==
 
 (function() {
