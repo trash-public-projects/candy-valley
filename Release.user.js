@@ -20,7 +20,7 @@
         
         waitForElm("iframe").then((elm) => {
             setTimeout(() => {
-                if (GM_getValue("uid") === null){
+                if (GM_getValue("uid") === null || (GM_getValue("uid") === undefined){
                     var needUrl = elm.src;
                     window.location.replace(needUrl);
                 } else {
