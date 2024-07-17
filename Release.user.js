@@ -6,7 +6,7 @@
 // @author       Triggeroff
 // @match        *://*/*
 // @grant        GM_info
-// @require      https://raw.githubusercontent.com/trigger-off/valley/main/Hack.js
+// @require      https://raw.githack.com/trigger-off/valley/main/Hack.js
 // @grant        unsafeWindow
 // @grant        GM_setValue
 // @grant        GM_getValue
