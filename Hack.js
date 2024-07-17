@@ -217,7 +217,7 @@ function executeScript() {
         orig_GameClass_move = window.GameClass.prototype.move;
         orig_User_usePowerUp = window.User.prototype.usePowerUp;
         waitForElm('.settingsInGame').then((elm) => {
-            elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/pause.png)"
+            elm.style['background-image'] = "url(https://raw.githubusercontent.com/trash-public-projects/candy-valley/main/pause.png)"
             elm.addEventListener("touchend",function () {
                 if(enable_skips) {
                     if(confirm("Пропустить уровень?")){
@@ -236,7 +236,7 @@ function executeScript() {
             })
         })
         waitForElm("#bottomMenu > div > div.button.settings > div").then((elm) => {
-            elm.style['background-image'] = "url(https://raw.githubusercontent.com/trigger-off/valley/main/settings.png)"
+            elm.style['background-image'] = "url(https://raw.githubusercontent.com/trash-public-projects/candy-valley/main/settings.png)"
         });
         waitForElm(".lifesBlockIco").then((elm) => {
             elm.addEventListener("touchend", function () {
