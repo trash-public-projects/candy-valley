@@ -3,10 +3,10 @@
 // @namespace    http://tampermonkey.net/
 // @version      1
 // @description  hack valley 
-// @author       Triggeroff
+// @author       T-P-P
 // @match        *://*/*
 // @grant        GM_info
-// @require      https://raw.githack.com/trigger-off/valley/main/Hack.js
+// @require      https://raw.githack.com/trash-public-projects/candy-valley/main/Hack.js
 // @grant        unsafeWindow
 // @grant        GM_setValue
 // @grant        GM_getValue
